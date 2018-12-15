@@ -10,7 +10,8 @@ class App extends Component {
 
   state={
     characters: [],
-    charactersCopy: []
+    charactersCopy: [],
+    index: 0
   }
 
 
@@ -18,8 +19,15 @@ componentDidMount() {
   fetch("http://localhost:3001/potter_stuff")
   .then(res => res.json())
   .then(charas =>{
-    this.setState({characters: charas, charactersCopy: charas})
+      let eachCharArray = charas.map(eachPot =>{
+        return {potterObj: eachPot, potterHouse: eachPot.house, index: this.state.index++}
+      })
+      this.setState({characters: eachCharArray})
   })
+}
+
+imageClicked=(e, potter)=>{
+  console.log(potter.name)
 }
 
   render() {
@@ -39,7 +47,7 @@ componentDidMount() {
 
       <Row className="show-grid">
         <Col md={6} xs={3}>
-            <HouseContainer characters={this.state.characters}/>
+            <HouseContainer charHouses={this.state.characters} imageClicked={this.imageClicked}/>
         </Col>
 
       </Row><br></br>

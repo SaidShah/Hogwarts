@@ -5,12 +5,13 @@ import CharacterCard from '../components/CharacterCard';
 class CharacterContainer extends Component {
 
   render() {
-    let allChars = this.props.characters.map(eachChar =>{
-      return <CharacterCard eachPotter={eachChar}/>
-    })
+
+      let eachPotterPic = this.props.characters.map(pot =>{
+        return <CharacterCard potter={pot.potterObj}/>
+      })
     return (
       <div>
-        {allChars}
+        {eachPotterPic}
       </div>
     );
   }

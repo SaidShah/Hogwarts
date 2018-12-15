@@ -1,16 +1,36 @@
 import React, { Component } from 'react';
 
-class House extends Component {
+const House = ({props, houses, imageClicked})=>{
 
 
-  render() {
 
     return (
       <div>
-      <h1>{console.log(this.props)}</h1>
+        <h1>Gryffindor House</h1><br></br>
+        <div className="flex-container">
+        {houses.map(a => {if(a.potterHouse === "Gryffindor"){return <img src={a.potterObj.image2} alt="" className="image2" onClick={(e)=>imageClicked(e,a.potterObj)}/>}})}
+        </div>
+        <br></br><br></br><br></br><br></br>
+
+        <h1>Slytherin House</h1><br></br>
+        <div className="flex-container">
+        {houses.map(a => {if(a.potterHouse === "Slytherin"){return <img src={a.potterObj.image2} alt="" className="image2" onClick={(e)=>imageClicked(e,a.potterObj)}/>}})}
+        </div>
+
+        <br></br><br></br><br></br><br></br>
+        <h1>HufflePuff House</h1><br></br>
+        <div className="flex-container">
+        {houses.map(a => {if(a.potterHouse === "HufflePuff"){return <img src={a.potterObj.image2} alt="" className="image2" onClick={(e)=>imageClicked(e,a.potterObj)}/>}})}
+        </div>
+        <br></br><br></br><br></br><br></br>
+
+        <h1>Ravenclaw House</h1><br></br>
+        <div className="flex-container">
+        {houses.map(a => {if(a.potterHouse === "Ravenclaw"){return <img src={a.potterObj.image2} alt="" className="image2" onClick={(e)=>imageClicked(e,a.potterObj)}/>}})}
+        </div>
       </div>
     );
-  }
+
 
 }
 
