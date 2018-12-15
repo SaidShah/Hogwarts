@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import CharacterCard from '../components/CharacterCard';
 
 
-class CharacterContainer extends Component {
+const CharacterContainer=({characters, imageClicked})=> {
 
-  render() {
-
-      let eachPotterPic = this.props.characters.map(pot =>{
-        return <CharacterCard potter={pot.potterObj}/>
+      let eachPotterPic = characters.map(pot =>{
+        return <CharacterCard potter={pot.potterObj} imageClicked={imageClicked}/>
       })
     return (
       <div>
@@ -16,6 +14,5 @@ class CharacterContainer extends Component {
     );
   }
 
-}
 
 export default CharacterContainer;

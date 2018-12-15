@@ -7,17 +7,17 @@ import '../App.css'
 class HouseContainer extends Component {
 
 
-
+handleclick=()=>{
+  debugger
+}
 
 
   render() {
 
-      // let p = this.props.charHouses.map(a=>{
-      //   console.log(a.index)
-      // })
+
     return (
       <div>
-        <House houses={this.props.charHouses} imageClicked={this.props.imageClicked}/>
+          <House houses={this.props.charHouses} />
       </div>
     );
   }

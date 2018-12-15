@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/lib/Col';
 import React, { Component } from 'react';
 import CharacterContainer from './containers/CharacterContainer'
 import HouseContainer from './containers/HouseContainer';
+import Form from './components/Form'
 import './App.css';
 
 class App extends Component {
@@ -12,6 +13,15 @@ class App extends Component {
     characters: [],
     charactersCopy: [],
     index: 0
+  }
+
+  handleSubmit=(e,potter)=>{
+    e.preventDefault()
+    let arr= [...this.state.characters, {potterObj: potter, potterHouse: potter.house, index:this.state.characters.length}]
+    this.setState({
+      characters: arr
+    })
+    console.log(e)
   }
 
 
@@ -27,7 +37,30 @@ componentDidMount() {
 }
 
 imageClicked=(e, potter)=>{
-  console.log(potter.name)
+  let arr = [...this.state.characters]
+  let p = this.state.characters.filter(a => a.potterObj === potter)
+  let house = potter.house
+  if(house === "Slytherin"){
+    house = "HufflePuff"
+  }else if(house === "HufflePuff"){
+    house = "Ravenclaw"
+  }else if (house === "Ravenclaw"){
+    house = "Gryffindor"
+  }else if(house === "Gryffindor"){
+    house = "Slytherin"
+  }
+
+  let newArr = arr.map(a=>{
+   if(a.potterObj === potter){
+       a.potterObj.house = house
+       a.potterHouse = house
+    }
+    return a
+  })
+  this.setState({
+    characters: newArr
+  })
+
 }
 
   render() {
@@ -36,11 +69,11 @@ imageClicked=(e, potter)=>{
     <Grid>
       <Row className="show-grid">
         <Col lg={5}>
-          <CharacterContainer characters={this.state.characters}/>
+          <CharacterContainer characters={this.state.characters} imageClicked={this.imageClicked}/>
 
         </Col>
         <Col  lg={6}>
-          SECOND COLUMN
+          <Form handleSubmit={this.handleSubmit}/>
         </Col>
       </Row>
         <br></br><br></br><br></br>
