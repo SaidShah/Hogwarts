@@ -35,6 +35,8 @@ render(){
   return(
       <div>
       <br></br>
+      <h2>Add a character</h2>
+      <br></br>
         <form onSubmit={(e)=>this.handleSubmit(e,this.state)}>
           <label>Name </label>
           <input type="text" onChange={this.handleChange} value={this.state.name} name="name"></input><br></br>

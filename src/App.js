@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import CharacterContainer from './containers/CharacterContainer'
 import HouseContainer from './containers/HouseContainer';
 import Form from './components/Form'
+import Search from './components/Search'
 import './App.css';
 
 class App extends Component {
@@ -21,7 +22,6 @@ class App extends Component {
     this.setState({
       characters: arr
     })
-    console.log(e)
   }
 
 
@@ -32,7 +32,7 @@ componentDidMount() {
       let eachCharArray = charas.map(eachPot =>{
         return {potterObj: eachPot, potterHouse: eachPot.house, index: this.state.index++}
       })
-      this.setState({characters: eachCharArray})
+      this.setState({characters: eachCharArray, charactersCopy: eachCharArray})
   })
 }
 
@@ -63,6 +63,25 @@ imageClicked=(e, potter)=>{
 
 }
 
+handleSearch=(e,term)=>{
+  if(term.byName !== ''){
+    let arr = this.state.charactersCopy.filter(a=>{
+      if(a.potterObj.name.includes(term.byName)){return a}
+    })
+    this.setState({
+      characters: arr
+    })
+  }else if(term.house !== ''){
+    let arr = this.state.charactersCopy.filter(a=>{
+      if(a.potterObj.house.includes(term.house)){return a}
+    })
+    this.setState({
+      characters: arr
+    })
+  }
+
+}
+
   render() {
     return (
   <div>
@@ -70,10 +89,11 @@ imageClicked=(e, potter)=>{
       <Row className="show-grid">
         <Col lg={5}>
           <CharacterContainer characters={this.state.characters} imageClicked={this.imageClicked}/>
-
         </Col>
         <Col  lg={6}>
           <Form handleSubmit={this.handleSubmit}/>
+          <Search handleSearch={this.handleSearch}/>
+
         </Col>
       </Row>
         <br></br><br></br><br></br>
